@@ -1,0 +1,36 @@
+---
+title: "README"
+author: "MEEE"
+date: "5/20/2020"
+output: html_document
+---
+
+
+## ReadMe
+
+Rbind is the best function so that both data sets can be merged, given that each variable is the same in both sets. the order of rbind must be the same in each execution, so that we are always looking at the same data in the same order.
+	data <- rbind(d2,d3) ;; labels <- rbind(d1,d4)
+
+Two columns are present in this data, we must only use the one with the names of the variables.
+	data <- setNames(data,names[,2]) 
+
+This function allows the user to see which activity is being performed, instead of having to learn what the number mean. 
+	labels[] <- activity$V2[match(unlist(labels),activityV1)] 
+
+We can find the position of each variable that is either a mean or a standard deviation.
+	position <- grep("mean()|std()",names[,2])
+Now we filter the data frame in order to only see the variables that matter to us. 
+	data <- data[,position] 
+
+It's easier to edit the variable names in a separate vector and then use setNames to go through with the changes.
+	names1 <- names(data)
+Now we merge all the data, and we have the tidy data set that is requested in the assingment
+	tidy <- cbind(subject, labels, data)
+
+We load the dplyr package in order to easily create a new variable with mutate.	
+	library(dplyr)
+This variable is a concatenation of Activity and Subject, in order to have to only group by only variable. This will allow the creation of the requested data
+	last <- tidy %>% mutate(Subject & Activity = paste(Subject,Activity)) 
+	last <- group_by(last,Subject & Activity) 
+Only looking at the numeric variables, that have been previously selected. The only variables that are left out is the subject and activity variables, that have already been used.
+	last <- summarise_at(last,3:81,mean) 

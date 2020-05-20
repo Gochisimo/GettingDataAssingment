@@ -1,0 +1,17 @@
+---
+title: "CodeBook"
+author: "Jose Valera"
+date: "5/18/2020"
+output: html_document
+---
+
+## Code Book
+ 
+There are 3 things that are important in these documents, the merge of the data that is in the X train and test files, the setting of names of each variable in these documents which are in the Feature files, and the descriptive names of these variables, notting that there is already a small explination of in the zip file, we must expand that in this document. In this thata there are two type of signals, time and frequency (t and f, in the raw data). These are then these are combined with either the Body or gravitational accelerations, and then these are combined by the soruce if its accelerometer or gyroscope related. To have the best information available there is data for each of the 3 dimensions. These descriptive names work given that the reader can understand what this certain column means.
+
+Then these signals are summarized with either the mean or the standrad deviation.
+
+The transformations that were made, only affected which data is shown, the raw numeric data hasn't been transoformed, only summarized through means. Since the assingment only asks for means and standard deviation, through the grep functions, the position of each column that fulfills this condition is located and then crossrefference with the data.
+
+
+
